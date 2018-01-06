@@ -3,13 +3,14 @@
 function help () {
     echo "setup_shell - A simple script to help set up the environment for flask"
     echo ""
-    echo "    setup_shell init                  - creates venv + imports packages";
-    echo "    setup_shell load                  - loads venv + imports packages";
+    echo "    setup_shell init  - creates venv + imports packages";
+    echo "    setup_shell load  - loads venv + imports packages";
+    echo "    setup_shell remove  - destroy venv";
 }
 
 function load_evn(){
   source venv/bin/activate
-  python -m pip install flask
+  python -m pip install flask==0.12.2
 }
 
 if [ $1 ]
@@ -22,6 +23,8 @@ then
     load)
       load_evn;
     ;;
+    remove)
+      rm -rf venv
     *)
         help;
     ;;
