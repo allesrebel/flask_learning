@@ -11,9 +11,13 @@ function help () {
     echo "    setup_shell remove  - destroy venv";
 }
 
+function get_modules(){
+    python -m pip install flask==0.12.2
+}
+
 function load_evn(){
   source venv/bin/activate
-  python -m pip install flask==0.12.2
+  export FLASK_APP=blog.py
 }
 
 if [ $1 ]
@@ -22,6 +26,7 @@ then
     init)
       python3.6 -m venv venv
       load_evn;
+      get_modules;
     ;;
     load)
       load_evn;
