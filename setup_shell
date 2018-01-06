@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+function help () {
+    echo "setup_shell - A simple script to help set up the environment for flask"
+    echo ""
+    echo "    setup_shell init                  - creates venv + imports packages";
+    echo "    setup_shell load                  - loads venv + imports packages";
+}
+
+function load_evn(){
+  source venv/bin/activate
+  python -m pip install flask
+}
+
+if [ $1 ]
+then
+    case "$1" in
+    init)
+      python3.6 -m venv venv
+      load_evn;
+    ;;
+    load)
+      load_evn;
+    ;;
+    *)
+        help;
+    ;;
+    esac
+else
+    help;
+fi
