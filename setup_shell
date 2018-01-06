@@ -2,6 +2,9 @@
 
 function help () {
     echo "setup_shell - A simple script to help set up the environment for flask"
+    echo "Meant to be called in the current shell environment (zsh), use source or . (dot) to do so"
+    echo "eg:    . ./setup_shell <cmd>"
+    echo "        source ./setup_shell <cmd> "
     echo ""
     echo "    setup_shell init  - creates venv + imports packages";
     echo "    setup_shell load  - loads venv + imports packages";
