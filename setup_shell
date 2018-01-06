@@ -25,6 +25,7 @@ then
     ;;
     remove)
       rm -rf venv
+    ;;
     *)
         help;
     ;;
