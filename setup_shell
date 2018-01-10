@@ -13,7 +13,9 @@ function help () {
 
 function get_modules(){
     python -m pip install Flask==0.12.2
-    python -m pip install Flask-WTF=0.14.2
+    python -m pip install Flask-WTF=0.14.2            # Form Creation/Handling
+    python -m pip install Flask-SQLAlchemy=2.3.2  # SQL, SQLite, and Postgre support
+    python -m pip install Flask-Migrate=2.1.1         # Database migration support
 }
 
 function load_evn(){
