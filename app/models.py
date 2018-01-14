@@ -1,7 +1,10 @@
 from datetime import datetime
-from app import db
+from werkzeug.security import check_password_hash, generate_password_hash
+from app import db, login
 
-class User(db.Model):
+from flask_login import UserMixin #To implement basic requirements of Flask_Login User Model requirements
+
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -25,3 +28,7 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+@login.user_loader #Decorate the user_loader function of the login object
+def load_user(id):
+    return User.query.get(int(id)) # Note that SQL Lite uses integers as ID's
