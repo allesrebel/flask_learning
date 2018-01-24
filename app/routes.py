@@ -53,3 +53,22 @@ def login():
         return redirect(url_for('index'))
 
     return render_template('login.html',  title='Sign In', form=form)
+
+from app import db
+from app.forms import RegistrationForm
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Registered User!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
