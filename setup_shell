@@ -13,10 +13,10 @@ function help () {
 
 function get_modules(){
     python -m pip install Flask==0.12.2
-    python -m pip install Flask-WTF=0.14.2            # Form Creation/Handling
-    python -m pip install Flask-SQLAlchemy=2.3.2  # SQL, SQLite, and Postgre support
-    python -m pip install Flask-Migrate=2.1.1         # Database migration support
-    python -m pip install Flask-Login=0.4.1            # For login persistance
+    python -m pip install Flask-WTF==0.14.2            # Form Creation/Handling
+    python -m pip install Flask-SQLAlchemy==2.3.2  # SQL, SQLite, and Postgre support
+    python -m pip install Flask-Migrate==2.1.1         # Database migration support
+    python -m pip install Flask-Login==0.4.1            # For login persistance
 }
 
 function load_evn(){
@@ -28,6 +28,8 @@ if [ $1 ]
 then
     case "$1" in
     init)
+      echo "Attempting to install python virtual environment"
+      sudo apt-get install python3-venv
       python3.6 -m venv venv
       load_evn;
       get_modules;
