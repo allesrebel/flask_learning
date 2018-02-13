@@ -1,9 +1,11 @@
 # Flask Quick Guide
 
 This project is meant to showcase a quick demonstration of how to get a quick
-blog going with membership/member restricted content going.
+website going with membership/member restricted content going.
 
 This is meant to be used to as a exercise in learning the basics of flask and scripting
+
+Based on the awesome tutorial by miguelgrinberg here: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 ## Getting Started
 

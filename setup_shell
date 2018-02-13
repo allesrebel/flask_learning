@@ -18,6 +18,9 @@ function get_modules(){
     python -m pip install Flask-SQLAlchemy==2.3.2  # SQL, SQLite, and Postgre support
     python -m pip install Flask-Migrate==2.1.1         # Database migration support
     python -m pip install Flask-Login==0.4.1            # For login persistance
+    python -m pip install Flask-Mailer==0.4.0        # For STMP Mailer
+    python -m pip install Flask-Bootstrap==3.3.7.1 # For Bootstrap CCS
+    python -m pip install PyJWT==1.5.3  # To deal with python json tokens
 }
 
 function load_evn(){
@@ -26,21 +29,21 @@ function load_evn(){
 
       Darwin)
         source venv/bin/activate
-        export FLASK_APP=blog.py
+        export FLASK_APP=website.py
         export FLASK_DEBUG=1
         echo 'Loaded Virtual Environment'
         ;;
 
       Linux)
         source venv/bin/activate
-        export FLASK_APP=blog.py
+        export FLASK_APP=website.py
         export FLASK_DEBUG=1
         echo 'Loaded Virtual Environment'
         ;;
 
       CYGWIN*|MINGW32*|MSYS*|MINGW64*)
         source venv/Scripts/activate
-        export FLASK_APP=blog.py
+        export FLASK_APP=website.py
         export FLASK_DEBUG=1
         echo 'Loaded Virtual Environment'
         ;;
