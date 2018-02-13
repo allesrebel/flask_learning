@@ -8,7 +8,8 @@ function help () {
     echo ""
     echo "    setup_shell init  - creates venv + imports packages";
     echo "    setup_shell load  - loads venv + imports packages";
-    echo "    setup_shell remove  - destroy venv";
+    echo "    setup_shell remove  - unload and destroy venv";
+    echo "    setup_shell unload  -  unload venv";
 }
 
 function get_modules(){
@@ -20,26 +21,82 @@ function get_modules(){
 }
 
 function load_evn(){
-  source venv/bin/activate
-  export FLASK_APP=blog.py
+
+   case "$(uname -s)" in
+
+      Darwin)
+        source venv/bin/activate
+        export FLASK_APP=blog.py
+        export FLASK_DEBUG=1
+        echo 'Loaded Virtual Environment'
+        ;;
+
+      Linux)
+        source venv/bin/activate
+        export FLASK_APP=blog.py
+        export FLASK_DEBUG=1
+        echo 'Loaded Virtual Environment'
+        ;;
+
+      CYGWIN*|MINGW32*|MSYS*|MINGW64*)
+        source venv/Scripts/activate
+        set FLASK_APP=blog.py
+        set FLASK_DEBUG=1
+        echo 'Loaded Virtual Environment'
+        ;;
+
+      *)
+        echo 'other OS - Unable to Set up environment' 
+        ;;
+   esac
 }
+
+# Main Args Parser
 
 if [ $1 ]
 then
     case "$1" in
     init)
       echo "Attempting to install python virtual environment"
-      sudo apt-get install python3-venv
-      python3.6 -m venv venv
+      case "$(uname -s)" in
+
+         Darwin)
+           echo 'Mac OS X'
+           ;;
+
+         Linux)
+           echo 'Linux'
+           sudo apt-get install python3-venv
+           python3.6 -m venv venv
+           ;;
+
+         CYGWIN*|MINGW32*|MSYS*|MINGW64*)
+           echo 'MS Windows - ensure that Python 3.6 is already installed'
+           python -m venv venv
+           ;;
+
+         *)
+           echo 'other OS - Please Manually install venv' 
+           ;;
+      esac
+
       load_evn;
       get_modules;
-    ;;
+      ;;
+
     load)
       load_evn;
-    ;;
+      ;;
+
     remove)
+      deactivate
       rm -rf venv
-    ;;
+      ;;
+
+    unload)
+      deactivate
+      ;;
+
     *)
         help;
     ;;
