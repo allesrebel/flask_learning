@@ -40,8 +40,8 @@ function load_evn(){
 
       CYGWIN*|MINGW32*|MSYS*|MINGW64*)
         source venv/Scripts/activate
-        set FLASK_APP=blog.py
-        set FLASK_DEBUG=1
+        export FLASK_APP=blog.py
+        export FLASK_DEBUG=1
         echo 'Loaded Virtual Environment'
         ;;
 
