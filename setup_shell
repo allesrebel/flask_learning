@@ -49,7 +49,7 @@ function load_evn(){
         ;;
 
       *)
-        echo 'other OS - Unable to Set up environment' 
+        echo 'other OS - Unable to Set up environment'
         ;;
    esac
 }
@@ -65,21 +65,25 @@ then
 
          Darwin)
            echo 'Mac OS X'
+           python3.6 -m pip install --upgrade pip
+           python3.6 -m venv venv
            ;;
 
          Linux)
            echo 'Linux'
            sudo apt-get install python3-venv
+           python3.6 -m pip install --upgrade pip
            python3.6 -m venv venv
            ;;
 
          CYGWIN*|MINGW32*|MSYS*|MINGW64*)
            echo 'MS Windows - ensure that Python 3.6 is already installed'
+           python -m pip install --upgrade pip
            python -m venv venv
            ;;
 
          *)
-           echo 'other OS - Please Manually install venv' 
+           echo 'other OS - Please Manually install venv'
            ;;
       esac
 
